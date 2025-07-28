@@ -5,9 +5,17 @@ int fadeAmount = 5;
 static unsigned long lastToggle = 0;
 static bool ledState = false;
 
+#ifdef USE_M5STACK_ATOM_ECHO
+// FastLED for WS2812B on M5Stack Atom Echo
+CRGB leds[WS2812B_LED_COUNT];
+#endif
+
 void setLEDColor(uint8_t r, uint8_t g, uint8_t b)
 {
-#ifdef USE_XIAO_ESP32_DEVKIT
+#ifdef USE_M5STACK_ATOM_ECHO
+    leds[0] = CRGB(r, g, b);
+    FastLED.show();
+#elif defined(USE_XIAO_ESP32_DEVKIT)
     analogWrite(BLUE_LED_PIN, b);
 #else
     analogWrite(RED_LED_PIN, r);
@@ -175,24 +183,40 @@ void blinkYellow()
 
 void turnOffLED()
 {
+#ifdef USE_M5STACK_ATOM_ECHO
+    leds[0] = CRGB::Black;
+    FastLED.show();
+#else
     digitalWrite(RED_LED_PIN, LOW);
     digitalWrite(GREEN_LED_PIN, LOW);
     digitalWrite(BLUE_LED_PIN, LOW);
+#endif
 }
 
 void turnOnLED()
 {
+#ifdef USE_M5STACK_ATOM_ECHO
+    leds[0] = CRGB::White;
+    FastLED.show();
+#else
     digitalWrite(RED_LED_PIN, HIGH);
     digitalWrite(GREEN_LED_PIN, HIGH);
     digitalWrite(BLUE_LED_PIN, HIGH);
+#endif
 }
 
 void setupRGBLED()
 {
+#ifdef USE_M5STACK_ATOM_ECHO
+    FastLED.addLeds<WS2812B, WS2812B_LED_PIN, GRB>(leds, WS2812B_LED_COUNT);
+    FastLED.setBrightness(50); // Set brightness to 50/255
+    turnOffLED(); // Turn off the LED initially
+#else
     pinMode(RED_LED_PIN, OUTPUT);
     pinMode(GREEN_LED_PIN, OUTPUT);
     pinMode(BLUE_LED_PIN, OUTPUT);
     turnOffLED(); // Turn off the LED initially
+#endif
 }
 
 void blinkCyanPulse()

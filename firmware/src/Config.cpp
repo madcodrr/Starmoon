@@ -61,6 +61,10 @@ const int I2S_SD_OUT = -1;
 
 const gpio_num_t BUTTON_PIN = GPIO_NUM_2; // Only RTC IO are allowed - ESP32 Pin example
 
+// WS2812B LED (not used on this board)
+const int WS2812B_LED_PIN = -1;
+const int WS2812B_LED_COUNT = 0;
+
 #elif defined(USE_XIAO_ESP32_DEVKIT)
 // LED pins
 const int RED_LED_PIN = -1;
@@ -77,6 +81,10 @@ const int I2S_DATA_OUT = D4;
 const int I2S_SD_OUT = D3;
 
 const gpio_num_t BUTTON_PIN = GPIO_NUM_9;
+
+// WS2812B LED (not used on this board)
+const int WS2812B_LED_PIN = -1;
+const int WS2812B_LED_COUNT = 0;
 
 #elif defined(USE_XIAO_ESP32)
 // LED pins
@@ -95,6 +103,10 @@ const int I2S_SD_OUT = D3;
 
 const gpio_num_t BUTTON_PIN = GPIO_NUM_9;
 
+// WS2812B LED (not used on this board)
+const int WS2812B_LED_PIN = -1;
+const int WS2812B_LED_COUNT = 0;
+
 #elif defined(USE_ESP32_S3_WHITE_CASE)
 // LED pins
 const int RED_LED_PIN = 13;
@@ -112,6 +124,10 @@ const int I2S_SD_OUT = -1;
 
 const gpio_num_t BUTTON_PIN = GPIO_NUM_0; // Only RTC IO are allowed - ESP32 Pin example
 
+// WS2812B LED (not used on this board)
+const int WS2812B_LED_PIN = -1;
+const int WS2812B_LED_COUNT = 0;
+
 #elif defined(USE_NORMAL_ESP32)
 // LED pins
 const int RED_LED_PIN = 2;
@@ -128,6 +144,33 @@ const int I2S_DATA_OUT = 25;
 const int I2S_SD_OUT = 21;
 
 const gpio_num_t BUTTON_PIN = GPIO_NUM_0; // Only RTC IO are allowed - ESP32 Pin example
+
+// WS2812B LED (not used on this board)
+const int WS2812B_LED_PIN = -1;
+const int WS2812B_LED_COUNT = 0;
+
+#elif defined(USE_M5STACK_ATOM_ECHO)
+// M5Stack Atom Echo pin configuration
+// RGB LED (WS2812B on G27)
+const int RED_LED_PIN = -1;     // Not used for WS2812B
+const int GREEN_LED_PIN = -1;   // Not used for WS2812B  
+const int BLUE_LED_PIN = -1;    // Not used for WS2812B
+const int WS2812B_LED_PIN = 27; // G27 RGB LED
+const int WS2812B_LED_COUNT = 1; // Single LED
+
+// I2S Microphone pins
+const int I2S_SD = 23;   // G23 DataIn/MIC
+const int I2S_WS = 33;   // G33 LRCK
+const int I2S_SCK = 19;  // G19 BCLK (shared with speaker)
+
+// I2S Speaker pins  
+const int I2S_WS_OUT = 33;      // G33 LRCK (shared with mic)
+const int I2S_BCK_OUT = 19;     // G19 BCLK SPK-I2S
+const int I2S_DATA_OUT = 22;    // G22 DataOut SPK-I2S
+const int I2S_SD_OUT = -1;      // Not used
+
+// Button pin
+const gpio_num_t BUTTON_PIN = GPIO_NUM_39; // G39 Button
 
 #endif
 

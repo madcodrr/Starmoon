@@ -3,6 +3,10 @@
 
 #include "Config.h"
 
+#ifdef USE_M5STACK_ATOM_ECHO
+#include <FastLED.h>
+#endif
+
 enum DeviceState
 {
     STATE_SETUP,                // when AP mode is enabled
