@@ -41,18 +41,23 @@ extern int16_t sBuffer[];
 
 // ----------------- Pin Definitions -----------------
 // Define which board you are using (uncomment one)
-#define USE_NORMAL_ESP32_S3
+// #define USE_NORMAL_ESP32_S3
 // #define USE_XIAO_ESP32_DEVKIT
 // #define USE_XIAO_ESP32
 // #define USE_NORMAL_ESP32
 // #define USE_ESP32_S3_WHITE_CASE
+#define USE_M5STACK_ATOM_ECHO
 
 extern const gpio_num_t BUTTON_PIN;
 
-// LED pins
+// LED pins (traditional RGB LEDs)
 extern const int RED_LED_PIN;
 extern const int GREEN_LED_PIN;
 extern const int BLUE_LED_PIN;
+
+// WS2812B LED pin (for M5Stack Atom Echo)
+extern const int WS2812B_LED_PIN;
+extern const int WS2812B_LED_COUNT;
 
 // I2S Microphone pins
 extern const int I2S_SD;
